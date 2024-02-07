@@ -1,41 +1,32 @@
-﻿'Alex Wheelock
+﻿Option Strict On
+Option Explicit On
+'Alex Wheelock
 'RCET 0265
 'Spring 2024
 'Roll Of The Dice
 'https://github.com/AlexWheelock/RollOfTheDice.git
 
-Option Strict On
-Option Explicit On
+Imports Microsoft.VisualBasic.Devices
+
 Module RollOfTheDice
 
     Sub Main()
 
+        Dim two As Integer = 0
+        Dim three As Integer = 0
+        Dim four As Integer = 0
+        Dim five As Integer = 0
+        Dim six As Integer = 0
+        Dim seven As Integer = 0
+        Dim eight As Integer = 0
+        Dim nine As Integer = 0
+        Dim ten As Integer = 0
+        Dim eleven As Integer = 0
+        Dim twelve As Integer = 0
+
         Dim returnedValue As Integer
-        Dim outputArray(10) As Integer
-
-        Dim two As Integer
-        Dim three As Integer
-        Dim four As Integer
-        Dim five As Integer
-        Dim six As Integer
-        Dim seven As Integer
-        Dim eight As Integer
-        Dim nine As Integer
-        Dim ten As Integer
-        Dim eleven As Integer
-        Dim twelve As Integer
-
-        outputArray(0) = two
-        outputArray(1) = three
-        outputArray(2) = four
-        outputArray(3) = five
-        outputArray(4) = six
-        outputArray(5) = seven
-        outputArray(6) = eight
-        outputArray(7) = nine
-        outputArray(8) = ten
-        outputArray(9) = eleven
-        outputArray(10) = twelve
+        Dim outputArray() = {two, three, four, five, six, seven, eight, nine, ten, eleven, twelve}
+        Dim header() = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}
 
         For rolls = 0 To 1000
 
@@ -64,11 +55,26 @@ Module RollOfTheDice
                     eleven += 1
                 Case = 12
                     twelve += 1
+                Case Else
             End Select
 
         Next
 
-        Console.WriteLine(outputArray)
+        For Each letter In header
+            Console.Write(letter.PadLeft(3).PadRight(4) & " |")
+        Next
+
+        'Dim length As Integer = cint(Len(header)
+
+        Console.WriteLine()
+        'For i = 0 To length
+        '    Console.Write("-")
+        'Next
+        Console.WriteLine()
+
+        For Each number In outputArray
+            Console.Write(CStr(number).PadLeft(3).PadRight(4) & " |")
+        Next
 
         Console.Read()
     End Sub
@@ -78,7 +84,7 @@ Module RollOfTheDice
         Dim rolledNumber As Integer
 
         Randomize()
-        rolledNumber = (CInt(Rnd() * 12) + 2)
+        rolledNumber = (CInt(Math.Floor(CDbl(Rnd() * 12) + 1)))
 
         Return rolledNumber
     End Function
