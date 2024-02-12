@@ -6,12 +6,11 @@
 
 Option Strict On
 Option Explicit On
-Imports Microsoft.VisualBasic.Devices
-
 Module RollOfTheDice
 
     Sub Main()
 
+        'Dimming a variable for each potential result to put into outputArray() later
         Dim two As Integer
         Dim three As Integer
         Dim four As Integer
@@ -23,6 +22,7 @@ Module RollOfTheDice
         Dim ten As Integer
         Dim eleven As Integer
         Dim twelve As Integer
+
         Dim returnedValue As Integer
         Dim header() = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}
 
@@ -65,20 +65,19 @@ Module RollOfTheDice
         'Organizes the numbered variables, and the number of times that they were rolled into an array
         Dim outputArray() = {two, three, four, five, six, seven, eight, nine, ten, eleven, twelve}
 
+        '(Lines 69-81): Puts together the formatting for the output display
+        Console.WriteLine(StrDup(21, " ") & "Roll of The Dice")
+        Console.WriteLine(StrDup(55, "-"))
+
         For Each letter In header
-            Console.Write(letter.PadLeft(3).PadRight(4) & " |")
+            Console.Write(letter.PadLeft(4).PadRight(4) & "|")
         Next
 
-        'Dim length As Integer = cint(Len(header)
-
         Console.WriteLine()
-        'For i = 0 To length
-        '    Console.Write("-")
-        'Next
-        Console.WriteLine(StrDup(66, "-"))
+        Console.WriteLine(StrDup(55, "-"))
 
         For Each number In outputArray
-            Console.Write(CStr(number).PadLeft(3).PadRight(4) & " |")
+            Console.Write(CStr(number).PadLeft(4).PadRight(4) & "|")
         Next
 
         Console.Read()
@@ -96,6 +95,7 @@ Module RollOfTheDice
         rolledNumber2 = (CInt(Math.Floor(CDbl(Rnd() * 6) + 1)))
         rolledTotal = rollednumber1 + rolledNumber2
 
+        'Returns the sum of the two randomly rolled die values
         Return rolledTotal
     End Function
 
