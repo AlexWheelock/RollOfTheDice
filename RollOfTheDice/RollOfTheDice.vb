@@ -1,37 +1,40 @@
-﻿Option Strict On
-Option Explicit On
-'Alex Wheelock
+﻿'Alex Wheelock
 'RCET 0265
 'Spring 2024
 'Roll Of The Dice
 'https://github.com/AlexWheelock/RollOfTheDice.git
 
+Option Strict On
+Option Explicit On
 Imports Microsoft.VisualBasic.Devices
 
 Module RollOfTheDice
 
     Sub Main()
 
-        Dim two As Integer = 0
-        Dim three As Integer = 0
-        Dim four As Integer = 0
-        Dim five As Integer = 0
-        Dim six As Integer = 0
-        Dim seven As Integer = 0
-        Dim eight As Integer = 0
-        Dim nine As Integer = 0
-        Dim ten As Integer = 0
-        Dim eleven As Integer = 0
-        Dim twelve As Integer = 0
-
+        Dim two As Integer
+        Dim three As Integer
+        Dim four As Integer
+        Dim five As Integer
+        Dim six As Integer
+        Dim seven As Integer
+        Dim eight As Integer
+        Dim nine As Integer
+        Dim ten As Integer
+        Dim eleven As Integer
+        Dim twelve As Integer
         Dim returnedValue As Integer
-        Dim outputArray() = {two, three, four, five, six, seven, eight, nine, ten, eleven, twelve}
         Dim header() = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12"}
 
-        For rolls = 0 To 1000
+        'Rolls the set if die 1000 times
+        For rolls = 0 To 999
 
+            'Sends the execution to the RollTheDice() function
+            'Sets returnedValue to the value returned from function
             returnedValue = RollTheDice()
 
+            'Determines the value of rolled number, and which case it falls into,
+            'Adds 1 to the number of times that number has already come up
             Select Case returnedValue
                 Case = 2
                     two += 1
@@ -57,8 +60,10 @@ Module RollOfTheDice
                     twelve += 1
                 Case Else
             End Select
-
         Next
+
+        'Organizes the numbered variables, and the number of times that they were rolled into an array
+        Dim outputArray() = {two, three, four, five, six, seven, eight, nine, ten, eleven, twelve}
 
         For Each letter In header
             Console.Write(letter.PadLeft(3).PadRight(4) & " |")
@@ -81,12 +86,17 @@ Module RollOfTheDice
 
     Function RollTheDice() As Integer
 
-        Dim rolledNumber As Integer
+        Dim rolledNumber1 As Integer
+        Dim rolledNumber2 As Integer
+        Dim rolledTotal As Integer
 
+        'Rolls each dice one time as a random number, then adds the two numbers together
         Randomize()
-        rolledNumber = (CInt(Math.Floor(CDbl(Rnd() * 12) + 1)))
+        rolledNumber1 = (CInt(Math.Floor(CDbl(Rnd() * 6) + 1)))
+        rolledNumber2 = (CInt(Math.Floor(CDbl(Rnd() * 6) + 1)))
+        rolledTotal = rollednumber1 + rolledNumber2
 
-        Return rolledNumber
+        Return rolledTotal
     End Function
 
 End Module
