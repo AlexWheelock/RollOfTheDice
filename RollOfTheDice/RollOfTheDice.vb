@@ -75,7 +75,7 @@ Module RollOfTheDice
         'For i = 0 To length
         '    Console.Write("-")
         'Next
-        Console.WriteLine()
+        Console.WriteLine(StrDup(66, "-"))
 
         For Each number In outputArray
             Console.Write(CStr(number).PadLeft(3).PadRight(4) & " |")
